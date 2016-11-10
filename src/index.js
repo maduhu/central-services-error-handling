@@ -2,6 +2,7 @@
 
 const Handler = require('./handler')
 const FailAction = require('./fail-action')
+const ValidationErrors = require('./validation-errors')
 
 exports.register = (server, options, next) => {
   server.ext('onPreResponse', Handler.onPreResponse)
@@ -22,3 +23,7 @@ exports.validateRoutes = (options = {}) => {
     options: options
   }
 }
+
+exports.InvalidBodyError = ValidationErrors.InvalidBodyError
+exports.InvalidQueryParameterError = ValidationErrors.InvalidQueryParameterError
+exports.InvalidUriParameterError = ValidationErrors.InvalidUriParameterError
