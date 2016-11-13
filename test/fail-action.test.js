@@ -82,6 +82,21 @@ Test('FailAction should', failActionTest => {
     FailAction({}, reply, 'query', error)
   })
 
+  failActionTest.test('reply with InvalidHeaderError if source is headers and error data is ValidationError', test => {
+    let validationError = new Error()
+    validationError.name = 'ValidationError'
+    let error = {
+      data: validationError
+    }
+
+    let reply = (err) => {
+      test.ok(err instanceof ValidationErrors.InvalidHeaderError)
+      test.end()
+    }
+
+    FailAction({}, reply, 'headers', error)
+  })
+
   failActionTest.test('reply with Error if source is unknown and error data is ValidationError', test => {
     let validationError = new Error()
     validationError.name = 'ValidationError'

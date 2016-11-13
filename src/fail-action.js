@@ -4,6 +4,7 @@ const ValidationErrors = require('./validation-errors')
 const InvalidBodyError = ValidationErrors.InvalidBodyError
 const InvalidQueryParameterError = ValidationErrors.InvalidQueryParameterError
 const InvalidUriParameterError = ValidationErrors.InvalidUriParameterError
+const InvalidHeaderError = ValidationErrors.InvalidHeaderError
 
 const reformatValidationError = (source, error) => {
   let data = error.data
@@ -15,6 +16,8 @@ const reformatValidationError = (source, error) => {
       return new InvalidQueryParameterError(...details)
     case 'params':
       return new InvalidUriParameterError(...details)
+    case 'headers':
+      return new InvalidHeaderError(...details)
     default:
       return error
   }

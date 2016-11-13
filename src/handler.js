@@ -1,7 +1,6 @@
 'use strict'
 
 const Shared = require('@leveloneproject/central-services-shared')
-const BaseError = Shared.BaseError
 const ErrorCategory = Shared.ErrorCategory
 
 const reformatBoomError = (response) => {
@@ -16,7 +15,7 @@ const reformatBoomError = (response) => {
 exports.onPreResponse = (request, reply) => {
   let response = request.response
   if (response.isBoom) {
-    if (response instanceof BaseError) {
+    if (response.category) {
       response.output.statusCode = ErrorCategory.getStatusCode(response.category)
       response.output.payload = response.payload
       response.output.headers = response.headers

@@ -20,8 +20,15 @@ class InvalidQueryParameterError extends ValidationError {
   }
 }
 
+class InvalidHeaderError extends ValidationError {
+  constructor (...validationErrors) {
+    super('Error validating one or more headers', validationErrors)
+  }
+}
+
 module.exports = {
   InvalidBodyError,
   InvalidQueryParameterError,
-  InvalidUriParameterError
+  InvalidUriParameterError,
+  InvalidHeaderError
 }

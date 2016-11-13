@@ -32,7 +32,7 @@ Test('error handler', handlerTest => {
       Handler.onPreResponse({ response: response }, reply(continuation))
     })
 
-    preResponse.test('handle boom wrapped Extendable errors', test => {
+    preResponse.test('handle boom wrapped errors with category property', test => {
       let message = 'test'
       let error = new TestError(message)
       let response = Boom.wrap(error)
@@ -66,7 +66,6 @@ Test('error handler', handlerTest => {
 
     preResponse.test('return reasonable defaults', test => {
       let error = new Error(undefined)
-      error.category = 'Not Recognized'
       let response = Boom.wrap(error)
       response.output.payload.message = null
       response.message = 'An internal server error occurred'

@@ -27,3 +27,4 @@ exports.validateRoutes = (options = {}) => {
 exports.InvalidBodyError = ValidationErrors.InvalidBodyError
 exports.InvalidQueryParameterError = ValidationErrors.InvalidQueryParameterError
 exports.InvalidUriParameterError = ValidationErrors.InvalidUriParameterError
+exports.InvalidHeaderError = ValidationErrors.InvalidHeaderError
